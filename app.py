@@ -9,13 +9,15 @@ import glob
 import streamlit as st
 from pathlib import Path
 
-from langchain.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
-from langchain.schema.output_parser import StrOutputParser
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.vectorstores import FAISS
+
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
+
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from langchain_core.output_parsers import StrOutputParser
 from langchain_groq import ChatGroq
 
 # ── Page Config ──────────────────────────────────────────────────────────────
@@ -28,8 +30,7 @@ st.set_page_config(
 # ── Constants ────────────────────────────────────────────────────────────────
 PDF_DIR     = "./hr_docs/"           # put PDFs here in your Streamlit repo
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-LLM_MODEL   = "llama3-70b-8192"
-
+LLM_MODEL = "llama-3.3-70b-versatile"
 HR_KEYWORDS = [
     "leave", "vacation", "sick", "maternity", "paternity", "salary",
     "ctc", "pay", "bonus", "wfh", "work from home", "remote", "hybrid",
